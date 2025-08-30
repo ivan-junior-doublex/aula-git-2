@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusLite - Pomodoro + Tarefas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Favicon simples -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏱️</text></svg>">
+</head>
+
+<body>
+    <!-- Header principal -->
+    <header class="header">
+        <h1 class="logo">FocusLite Teste</h1>
+        <nav class="nav">
+            <button class="nav-btn active" data-page="tasks">Tarefas</button>
+            <button class="nav-btn" data-page="timer">Timer</button>
+        </nav>
+    </header>
+
+    <!-- Container principal -->
+    <main class="main-container">
+        <!-- Página de Tarefas -->
+        <section id="tasks-page" class="page active">
+            <div class="tasks-header">
+                <h2>Minhas Tarefas</h2>
+                <div class="stats">
+                    <span class="stat-item">
+                        <span class="stat-number" id="total-tasks">0</span>
+                        <span class="stat-label">Total</span>
+                    </span>
+                    <span class="stat-item">
+                        <span class="stat-number" id="completed-tasks">0</span>
+                        <span class="stat-label">Concluídas</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Formulário para adicionar tarefa -->
+            <form class="add-task-form" id="add-task-form">
+                <input type="text" id="task-input" placeholder="Digite sua tarefa aqui..." maxlength="100" required>
+                <button type="submit" class="btn btn-primary">
+                    <span class="btn-icon">+</span>
+                    Adicionar
+                </button>
+            </form>
+
+            <!-- Lista de tarefas -->
+            <div class="tasks-container">
+                <ul class="tasks-list" id="tasks-list">
+                    <!-- Tarefas serão inseridas aqui dinamicamente -->
+                </ul>
+            </div>
+
+            <!-- Mensagem quando não há tarefas -->
+            <div class="empty-state" id="empty-state">
+                <div class="empty-icon">📝</div>
+                <h3>Nenhuma tarefa ainda</h3>
+                <p>Adicione sua primeira tarefa para começar a organizar seu dia!</p>
+            </div>
+        </section>
+
+        <!-- Página do Timer -->
+        <section id="timer-page" class="page">
+            <div class="timer-container">
+                <h2>Timer Pomodoro</h2>
+
+                <!-- Modo do timer -->
+                <div class="timer-mode">
+                    <button class="mode-btn active" data-mode="focus">Foco</button>
+                    <button class="mode-btn" data-mode="break">Pausa</button>
+                </div>
+
+                <!-- Display do timer -->
+                <div class="timer-display">
+                    <div class="time" id="timer-display">25:00</div>
+                    <div class="timer-label" id="timer-label">Tempo de Foco</div>
+                </div>
+
+                <!-- Controles do timer -->
+                <div class="timer-controls">
+                    <button class="btn btn-secondary" id="reset-btn">Reset</button>
+                    <button class="btn btn-primary" id="start-btn">Iniciar</button>
+                    <button class="btn btn-secondary" id="pause-btn" style="display: none;">Pausar</button>
+                </div>
+
+                <!-- Ciclos completados -->
+                <div class="cycles-info">
+                    <span class="cycles-label">Ciclos completados:</span>
+                    <span class="cycles-count" id="cycles-count">0</span>
+                </div>
+
+                <!-- Tarefa atual (se houver) -->
+                <div class="current-task" id="current-task" style="display: none;">
+                    <h4>Tarefa atual:</h4>
+                    <p id="current-task-text"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Notificação de áudio -->
+    <audio id="timer-sound" preload="auto">
+        <source
+            src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmGgU7k9n1unEiBC13yO/eizEIHWq+8+OWT"
+            type="audio/wav">
+    </audio>
+
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/tasks.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
